@@ -1,3 +1,5 @@
+
+
 #Subproblems to solve: 
 #   1. Look at the stock and choose the lowest number, this is the best day to buy
 #       Sort to find the smallest value
@@ -13,28 +15,34 @@
 #       even if you don't buy the lowest or sell the highest overall
 #       Store the corresponding buy and sell dates when a higher profit is evaluated
 
+
+
+
 def stock_picker(arr)
-  sort_lowest = arr.sort
-  buy_price = sort_lowest[0]
-  buy_date = arr.index(sort_lowest[0])
+  final_profit = 0
+  current_profit = 0
+  final_dates = []
 
-  sort_highest = arr.sort.reverse
-
-  profit = 0
-
-
-  sort_highest.each do |sell_price| 
-    sell_date = arr.index(sell_price)
-    if sell_date > buy_date
-      if sell_price > buy_price
-        profit = sell_price - buy_price
-        puts profit
+  arr.each do |buy_price|
+    buy_date = arr.index(buy_price)
+    
+    arr.each do |sell_price| 
+      sell_date = arr.index(sell_price)
+      
+      if (sell_date > buy_date && sell_price > buy_price)    
+        current_profit = sell_price - buy_price
+        if current_profit > final_profit
+          final_profit = current_profit
+          final_dates = [buy_date, sell_date]
+        end
       end 
-    end 
+    end
   end
+  puts final_dates
 end
 
 
 
 
   stock_picker([17,3,6,9,15,8,6,1,10])
+

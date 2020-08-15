@@ -16,7 +16,7 @@
 def stock_picker(arr)
   sort_lowest = arr.sort
   buy_price = sort_lowest[0]
-  buy_date = arr[sort_lowest[0]]
+  buy_date = arr.index(sort_lowest[0])
 
   sort_highest = arr.sort.reverse
 
@@ -24,12 +24,14 @@ def stock_picker(arr)
 
 
   sort_highest.each do |sell_price| 
-    sell_date = arr.index[sell_price]
-    if arr.index[sell_price] > buy_date
-      if 
+    sell_date = arr.index(sell_price)
+    if sell_date > buy_date
+      if sell_price > buy_price
+        profit = sell_price - buy_price
+        puts profit
+      end 
     end 
-
-  
+  end
 end
 
 
